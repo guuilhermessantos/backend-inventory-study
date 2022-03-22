@@ -20,7 +20,3 @@ class DeleteProductController {
 }
 
 export { DeleteProductController }
-
-/**
- * server -> routes -> Controller -> Service (throw new Error)
- */

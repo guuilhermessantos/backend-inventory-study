@@ -22,6 +22,3 @@ class UpdateUserController {
 
 export { UpdateUserController }
 
-/**
- * server -> routes -> Controller -> Service (throw new Error)
- */

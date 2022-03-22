@@ -16,9 +16,6 @@ class UpdateProductService {
         const productAlreadyExists = await productsRepository.findOne({ // verifica se o usuario ja existe
             id
         })
-        console.log('productAlreadyExists', productAlreadyExists)
-        console.log(id);
-        
 
         if ( !productAlreadyExists ) { // se não existir lança um erro
             throw new Error("Product not exists");

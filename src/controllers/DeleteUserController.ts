@@ -20,7 +20,3 @@ class DeleteUserController {
 }
 
 export { DeleteUserController }
-
-/**
- * server -> routes -> Controller -> Service (throw new Error)
- */

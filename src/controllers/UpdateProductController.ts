@@ -2,7 +2,6 @@
 
 import { Request, Response } from "express"
 import { UpdateProductService } from "../services/UpdateProductService";
-import { UpdateUserService } from "../services/UpdateUserService";
 
 
 class UpdateProductController {
@@ -22,7 +21,3 @@ class UpdateProductController {
 }
 
 export { UpdateProductController }
-
-/**
- * server -> routes -> Controller -> Service (throw new Error)
- */

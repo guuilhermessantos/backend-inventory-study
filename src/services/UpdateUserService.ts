@@ -18,7 +18,6 @@ class UpdateUserService {
             id
         })
         
-
         if ( !userAlreadyExists ) { // se não existir lança um erro
             throw new Error("User not exists");
         }

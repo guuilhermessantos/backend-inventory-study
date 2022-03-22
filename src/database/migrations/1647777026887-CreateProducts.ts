@@ -52,6 +52,7 @@ export class CreateProducts1647777026887 implements MigrationInterface {
                         referencedColumnNames: ["id"],
                         columnNames: ["id_creator"],
                         onDelete: "SET NULL",
+                        onUpdate: "CASCADE",
                     },
                 ]
             })
