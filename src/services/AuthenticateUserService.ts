@@ -5,6 +5,7 @@ import { sign } from 'jsonwebtoken'
 
 import { UsersRepositories } from "../repositories/UserRepositories";
 
+
 interface IAuthenticateRequest {
     email: string;
     password: string;
@@ -17,7 +18,7 @@ class AuthenticateUserService {
         
         // Verificar se email existe
         const user = await usersRepositories.findOne({
-            email
+            email,
         });
 
         if(!user) {
@@ -26,9 +27,12 @@ class AuthenticateUserService {
 
         // verificar se a senha está correta
 
+        console.log('user.password', user.password)
+        console.log('password', password)
+
         const passwordMatch = await compare(password, user.password);
 
-        if (!user) {
+        if (!passwordMatch) {
             throw new Error("Email/Password incorrect")
         }
 
@@ -36,7 +40,8 @@ class AuthenticateUserService {
 
         const token = sign(
             {
-                email: user.email
+                email: user.email,
+                // password: user.password
             },
             "94883e4d8e916cc12fc28f4eea76f08b",
             {
@@ -45,7 +50,8 @@ class AuthenticateUserService {
             }
         );
 
-        return token;
+    
+        return {token, user};
     
 
     }

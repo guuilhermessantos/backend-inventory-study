@@ -37,17 +37,17 @@ router.post("/login", authenticateUserController.handle); //login
 
 
 router.post("/users", createUserController.handle); // criar user
-router.get("/users", ensureAuthenticated ,listUsersController.handle) // buscar todos os usuarios
-router.get("/users/:id", ensureAuthenticated ,listOneUserController.handle) // buscar 1 usuario
+router.get("/users", ensureAuthenticated, listUsersController.handle) // buscar todos os usuarios
+router.get("/users/:id", listOneUserController.handle) // buscar 1 usuario
 
-router.put("/users/:id",  ensureAuthenticated, updateUserController.handle) // editar user
+router.put("/users/:id",  updateUserController.handle) // editar user
 
-router.delete("/users/:id", ensureAuthenticated, deleteUserController.handle) // deletando user
+router.delete("/users/:id",deleteUserController.handle) // deletando user
 
-router.post("/products",createProductsController.handle); // criar produtos
+router.post("/products", createProductsController.handle); // criar produtos
 router.get("/products", ensureAuthenticated, listProductsController.handle ) // buscar todos os produtos
-router.get("/products/:id", ensureAuthenticated ,listOneProductService.handle) // buscar 1 usuario
-router.put("/products/:id",  ensureAuthenticated, ensureAdmin, updateProductController.handle) // editar um produto
-router.delete("/products/:id", ensureAuthenticated, ensureAdmin, deleteProductController.handle) // deletar um produto
+router.get("/products/:id", listOneProductService.handle) // buscar 1 usuario
+router.put("/products/:id",  updateProductController.handle) // editar um produto
+router.delete("/products/:id",   deleteProductController.handle) // deletar um produto
 
 export { router };

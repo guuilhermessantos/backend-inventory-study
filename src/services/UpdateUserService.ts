@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UserRepositories";
+import { hash } from "bcryptjs"
 
 interface IUserRequest {
     id: string,
@@ -22,9 +23,11 @@ class UpdateUserService {
             throw new Error("User not exists");
         }
 
+        const passwordHash = await hash(password, 8)
+
         if (userAlreadyExists) {
             // usersRepository.merge(userAlreadyExists, name, email, admin, password );
-            const results = await usersRepository.save({id, name, email, admin, password});
+            const results = await usersRepository.save({id, name, email, admin, password: passwordHash});
             
             return results;
           }
