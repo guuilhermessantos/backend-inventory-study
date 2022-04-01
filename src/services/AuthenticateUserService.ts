@@ -27,8 +27,7 @@ class AuthenticateUserService {
 
         // verificar se a senha está correta
 
-        console.log('user.password', user.password)
-        console.log('password', password)
+
 
         const passwordMatch = await compare(password, user.password);
 

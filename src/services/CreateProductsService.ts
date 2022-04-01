@@ -1,5 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { ProductsRepositories } from "../repositories/ProductsRepositories";
+import { UsersRepositories } from "../repositories/UserRepositories";
+import { ListOneUserService } from "./ListOneUser";
 
 interface IProductRequest {
     id_creator: string;
@@ -14,11 +16,12 @@ class CreateProductsService {
     async execute ({id_creator, obs_product, name_product, quantity }: IProductRequest) {
         
         const productsRepositories = getCustomRepository(ProductsRepositories);
+        const listOneUserService = new ListOneUserService()
+        const user = await listOneUserService.execute({ id: id_creator })
 
         if (!name_product) {   
             throw new Error ("Name incorrect"); 
         }
-       
 
         const product = productsRepositories.create({ 
             id_creator,
@@ -29,7 +32,9 @@ class CreateProductsService {
 
         await productsRepositories.save(product)
 
-        return product;
+        const responseFormatted = Object.assign(product, { idCreator: user })
+
+        return responseFormatted;
 
     }
 }

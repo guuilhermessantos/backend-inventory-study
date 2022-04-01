@@ -12,6 +12,7 @@ interface IOneUser {
 class ListOneUserService  {
     async execute(id :IOneUser) {
         const usersRepositories= getCustomRepository(UsersRepositories)
+        
         const user = await usersRepositories.findOne(
             id
         )

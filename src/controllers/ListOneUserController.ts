@@ -7,12 +7,21 @@ import { ListOneUserService } from "../services/ListOneUser";
 
 class ListOneUserController {
     async handle(request: Request, response: Response ) {
-        const { id } = request.body
+        const { id } = request.params
+
+
+        
 
         const listUsersService = new ListOneUserService();
-        const users = await listUsersService.execute( id );
 
-        return response.json(users);
+        
+        
+
+        const user = await listUsersService.execute( {id} );
+
+        
+
+        return response.json(user);
     }
 }
 

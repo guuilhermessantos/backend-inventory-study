@@ -9,7 +9,7 @@ class ListProductsService {
 
         const productsRepositories = getCustomRepository(ProductsRepositories);
 
-        const products = await productsRepositories.find();
+        const products = await productsRepositories.find( {relations: ["idCreator"]});
 
         
 
