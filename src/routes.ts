@@ -13,6 +13,7 @@ import { DeleteProductController } from "./controllers/DeleteProductController";
 import { ListOneUserService } from "./services/ListOneUser";
 import { ListOneUserController } from "./controllers/ListOneUserController";
 import { ListOneProductController } from "./controllers/ListOneProductController";
+import { ListProductsUserControler } from "./controllers/ListProductsUser";
 
 
 const router = Router();
@@ -27,7 +28,8 @@ const deleteUserController  = new DeleteUserController()
 const updateProductController = new UpdateProductController();
 const deleteProductController = new DeleteProductController()
 const listOneUserController  = new ListOneUserController();
-const listOneProductService = new ListOneProductController();
+const listOneProductController = new ListOneProductController();
+const listProductsUserController = new ListProductsUserControler
 
 
 
@@ -46,7 +48,10 @@ router.delete("/users/:id",deleteUserController.handle) // deletando user
 
 router.post("/products", createProductsController.handle); // criar produtos
 router.get("/products", ensureAuthenticated, listProductsController.handle ) // buscar todos os produtos
-router.get("/products/:id", listOneProductService.handle) // buscar 1 usuario
+router.get("/products/:id", listOneProductController.handle) // buscar 1 usuario
+
+router.get("/productsuser/:id_creator", listProductsUserController.handle) // busca produtos do usuario
+
 router.put("/products/:id",  updateProductController.handle) // editar um produto
 router.delete("/products/:id",   deleteProductController.handle) // deletar um produto
 
